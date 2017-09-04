@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+h1 {
+	color: #337ab7;
+}
+p {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 18px;
+}
+
+input[type=text] {
+    width: 50%;
+    padding: 6px 10px;
+    margin: 10px 0;
+    border: 2px solid gray;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.button {
+    background-color: #008CBA; /* Blue */
+    border: none;
+    color: white;
+    padding: 7px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button-green {background-color: 4CAF50;} /* Green */
+.button-red {background-color: #f44336;} /* Red */ 
+.button-gray {background-color: #e7e7e7; color: black;} /* Gray */ 
+.button-black {background-color: #555555;} /* Black */
+</style>
+</head>
+<body>
+<h1>Name Calculator</h1>
+<p>Name: <input id="input" type="text">
+<button class="button button-gray" type="button" id="resetTextfieldBtn" onclick="resetTextfield()">Reset</button>
+<button class="button" type="button" id="calculateBtn" onclick="calculate()">Calculate</button>
+</p>
+<br/>
+<h2>Results: <button class="button button-gray" type="button" id="resetResultBtn" onclick="resetResult()">Clear All Results</button></h2>
+
+<p id="result"></p>
+
+<script type="text/javascript">
+var lib = {};
+lib['A']=1; lib['B']=2; lib['C']=3; lib['D']=4; lib['E']=5; lib['F']=6; lib['G']=7; lib['H']=8; lib['I']=9;
+lib['J']=1; lib['K']=2; lib['L']=3; lib['M']=4; lib['N']=5; lib['O']=6; lib['P']=7; lib['Q']=8; lib['R']=9;
+lib['S']=1; lib['T']=2; lib['U']=3; lib['V']=4; lib['W']=5; lib['X']=6; lib['Y']=7; lib['Z']=8;
+document.getElementById("input").onkeypress=function(e){
+    if(e.keyCode==13){
+        document.getElementById('calculateBtn').click();
+    }
+}
+
+function calculate() {
+    var input = document.getElementById("input").value;
+    if (input == "") {
+    	alert("Name cannot be empty!");
+    	return false;
+    }
+	var total = 0;
+	for (var i = 0; i < input.length; i++){
+	    var c = input.charAt(i).toUpperCase();
+	    var val = lib[c];
+	    if (val === undefined) {
+	    	total += 0;
+	    } else {
+	    	total += val;
+	    }
+	}
+	var remainder = total % 9;
+	var text = input.toUpperCase() + " = " + (remainder === 0 ? 9 : remainder);
+	var currentResult = document.getElementById("result").innerHTML;
+	if ( currentResult !== "") {
+		document.getElementById("result").innerHTML = currentResult + "<br/>" + text;
+	} else {
+		 document.getElementById("result").innerHTML = text;
+	}
+}
+
+function resetTextfield() {
+	document.getElementById("input").value = "";
+}
+
+function resetResult() {
+	document.getElementById("result").innerHTML = "";
+}
+</script>
+
+</body>
+</html> 
