@@ -11,7 +11,7 @@ p {
 }
 
 input[type=text] {
-    width: 50%;
+    width: 25%;
     padding: 6px 10px;
     margin: 10px 0;
     border: 2px solid gray;
@@ -40,10 +40,10 @@ input[type=text] {
 </head>
 <body>
 <h1>Name Calculator</h1>
-<p>Name: <input id="input" type="text">
+<p>Name: <input id="input" type="text"></p>
 <button class="button button-gray" type="button" id="resetTextfieldBtn" onclick="resetTextfield()">Reset</button>
 <button class="button" type="button" id="calculateBtn" onclick="calculate()">Calculate</button>
-</p>
+
 <br/>
 <h2>Results: <button class="button button-gray" type="button" id="resetResultBtn" onclick="resetResult()">Clear All Results</button></h2>
 
@@ -54,6 +54,7 @@ var lib = {};
 lib['A']=1; lib['B']=2; lib['C']=3; lib['D']=4; lib['E']=5; lib['F']=6; lib['G']=7; lib['H']=8; lib['I']=9;
 lib['J']=1; lib['K']=2; lib['L']=3; lib['M']=4; lib['N']=5; lib['O']=6; lib['P']=7; lib['Q']=8; lib['R']=9;
 lib['S']=1; lib['T']=2; lib['U']=3; lib['V']=4; lib['W']=5; lib['X']=6; lib['Y']=7; lib['Z']=8;
+lib['0']=0; lib['1']=1; lib['2']=2; lib['3']=3; lib['4']=4; lib['5']=5; lib['6']=6; lib['7']=7; lib['8']=8; lib['9']=9;
 document.getElementById("input").onkeypress=function(e){
     if(e.keyCode==13){
         document.getElementById('calculateBtn').click();
