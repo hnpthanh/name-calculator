@@ -11,7 +11,7 @@ p {
 }
 
 input[type=text] {
-    width: 25%;
+    width: 75%;
     padding: 6px 10px;
     margin: 10px 0;
     border: 2px solid gray;
@@ -36,65 +36,76 @@ input[type=text] {
 .button-red {background-color: #f44336;} /* Red */ 
 .button-gray {background-color: #e7e7e7; color: black;} /* Gray */ 
 .button-black {background-color: #555555;} /* Black */
+
+.calculator {
+  width: 100%;
+  display:inline-block;
+  overflow: auto;
+  white-space: nowrap;
+  margin:0px auto;
+}
 </style>
 </head>
 <body>
-<h1>Name Calculator</h1>
-<p>Name: <input id="input" type="text"></p>
-<button class="button button-gray" type="button" id="resetTextfieldBtn" onclick="resetTextfield()">Reset</button>
-<button class="button" type="button" id="calculateBtn" onclick="calculate()">Calculate</button>
+  <div class="calculator">
+	<h1>Name Calculator</h1>
+	<p>Name: <input id="input" type="text"></p>
+	<div style="float: left;"><button class="button button-gray" type="button" id="resetTextfieldBtn" onclick="resetTextfield()">Reset</button></div>
+	<div style="float: right;"><button class="button" type="button" id="calculateBtn" onclick="calculate()">Calculate</button></div>
+  </div>
 
-<br/>
-<h2>Results: <button class="button button-gray" type="button" id="resetResultBtn" onclick="resetResult()">Clear All Results</button></h2>
+  <br/>
+  <div>
+	<h2>Results: <button class="button button-gray" type="button" id="resetResultBtn" onclick="resetResult()">Clear All Results</button></h2>
+	<p id="result"></p>
+  </div>
 
-<p id="result"></p>
-
-<script type="text/javascript">
-var lib = {};
-lib['A']=1; lib['B']=2; lib['C']=3; lib['D']=4; lib['E']=5; lib['F']=6; lib['G']=7; lib['H']=8; lib['I']=9;
-lib['J']=1; lib['K']=2; lib['L']=3; lib['M']=4; lib['N']=5; lib['O']=6; lib['P']=7; lib['Q']=8; lib['R']=9;
-lib['S']=1; lib['T']=2; lib['U']=3; lib['V']=4; lib['W']=5; lib['X']=6; lib['Y']=7; lib['Z']=8;
-lib['0']=0; lib['1']=1; lib['2']=2; lib['3']=3; lib['4']=4; lib['5']=5; lib['6']=6; lib['7']=7; lib['8']=8; lib['9']=9;
-document.getElementById("input").onkeypress=function(e){
-    if(e.keyCode==13){
-        document.getElementById('calculateBtn').click();
-    }
-}
-
-function calculate() {
-    var input = document.getElementById("input").value;
-    if (input == "") {
-    	alert("Name cannot be empty!");
-    	return false;
-    }
-	var total = 0;
-	for (var i = 0; i < input.length; i++){
-	    var c = input.charAt(i).toUpperCase();
-	    var val = lib[c];
-	    if (val === undefined) {
-	    	total += 0;
-	    } else {
-	    	total += val;
+	<script type="text/javascript">
+	var lib = {};
+	lib['A']=1; lib['B']=2; lib['C']=3; lib['D']=4; lib['E']=5; lib['F']=6; lib['G']=7; lib['H']=8; lib['I']=9;
+	lib['J']=1; lib['K']=2; lib['L']=3; lib['M']=4; lib['N']=5; lib['O']=6; lib['P']=7; lib['Q']=8; lib['R']=9;
+	lib['S']=1; lib['T']=2; lib['U']=3; lib['V']=4; lib['W']=5; lib['X']=6; lib['Y']=7; lib['Z']=8;
+	lib['0']=0; lib['1']=1; lib['2']=2; lib['3']=3; lib['4']=4; lib['5']=5; lib['6']=6; lib['7']=7; lib['8']=8; lib['9']=9;
+	document.getElementById("input").onkeypress=function(e){
+	    if(e.keyCode==13){
+	        document.getElementById('calculateBtn').click();
 	    }
 	}
-	var remainder = total % 9;
-	var text = input.toUpperCase() + " = " + (remainder === 0 ? 9 : remainder);
-	var currentResult = document.getElementById("result").innerHTML;
-	if ( currentResult !== "") {
-		document.getElementById("result").innerHTML = currentResult + "<br/>" + text;
-	} else {
-		 document.getElementById("result").innerHTML = text;
+	
+	function calculate() {
+	    var input = document.getElementById("input").value;
+	    if (input == "") {
+	    	alert("Name cannot be empty!");
+	    	return false;
+	    }
+		var total = 0;
+		for (var i = 0; i < input.length; i++){
+		    var c = input.charAt(i).toUpperCase();
+		    var val = lib[c];
+		    if (val === undefined) {
+		    	total += 0;
+		    } else {
+		    	total += val;
+		    }
+		}
+		var remainder = total % 9;
+		var text = input.toUpperCase() + " = " + (remainder === 0 ? 9 : remainder);
+		var currentResult = document.getElementById("result").innerHTML;
+		if ( currentResult !== "") {
+			document.getElementById("result").innerHTML = currentResult + "<br/>" + text;
+		} else {
+			 document.getElementById("result").innerHTML = text;
+		}
 	}
-}
-
-function resetTextfield() {
-	document.getElementById("input").value = "";
-}
-
-function resetResult() {
-	document.getElementById("result").innerHTML = "";
-}
-</script>
+	
+	function resetTextfield() {
+		document.getElementById("input").value = "";
+	}
+	
+	function resetResult() {
+		document.getElementById("result").innerHTML = "";
+	}
+	</script>
 
 </body>
 </html> 
